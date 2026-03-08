@@ -1,30 +1,39 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     const cursor = cursorRef.current
     if (!cursor) return
 
-    // Only on devices with a fine pointer (no touch)
+    // Only on devices with a fine pointer
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       cursor.style.display = 'none'
-      document.documentElement.classList.remove('has-custom-cursor')
       return
     }
 
-    // Signal to CSS that custom cursor is active
     document.documentElement.classList.add('has-custom-cursor')
 
-    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0
+    let mouseX = -100, mouseY = -100, cursorX = -100, cursorY = -100
+    let hasMovedOnce = false
     let rafId: number
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
+      if (!hasMovedOnce) {
+        cursorX = mouseX
+        cursorY = mouseY
+        hasMovedOnce = true
+        cursor.style.opacity = '1'
+      }
     }
 
     const animate = () => {
@@ -44,14 +53,11 @@ export default function CustomCursor() {
       if (target) cursor.classList.remove('cursor--hover')
     }
 
-    const onMouseEnter = () => { cursor.style.opacity = '1' }
-    const onMouseLeave = () => { cursor.style.opacity = '0' }
+    cursor.style.opacity = '0'
 
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseover', onMouseOver)
     document.addEventListener('mouseout', onMouseOut)
-    document.documentElement.addEventListener('mouseenter', onMouseEnter)
-    document.documentElement.addEventListener('mouseleave', onMouseLeave)
 
     rafId = requestAnimationFrame(animate)
 
@@ -59,12 +65,15 @@ export default function CustomCursor() {
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseover', onMouseOver)
       document.removeEventListener('mouseout', onMouseOut)
-      document.documentElement.removeEventListener('mouseenter', onMouseEnter)
-      document.documentElement.removeEventListener('mouseleave', onMouseLeave)
       cancelAnimationFrame(rafId)
       document.documentElement.classList.remove('has-custom-cursor')
     }
-  }, [])
+  }, [mounted])
 
-  return <div className="cursor" ref={cursorRef} aria-hidden="true" />
+  // Portal directly to document.body — no parent stacking context issues
+  if (!mounted) return null
+  return createPortal(
+    <div className="cursor" ref={cursorRef} aria-hidden="true" />,
+    document.body
+  )
 }
