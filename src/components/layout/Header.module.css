@@ -43,15 +43,19 @@
 }
 .logoDark {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
-  transform: translateY(-50%);
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
   opacity: 0;
   transition: opacity 0.4s;
+  pointer-events: none;
 }
 .logoDark svg { height: 18px; width: auto; }
-.scrolled .logoLight { opacity: 0; }
-.scrolled .logoDark { opacity: 1; }
+.scrolled .logoLight { opacity: 0; pointer-events: none; }
+.scrolled .logoDark { opacity: 1; pointer-events: auto; }
 
 /* ── Nav Links ─────────────────────────────────────── */
 .links {
