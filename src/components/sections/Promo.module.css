@@ -24,3 +24,8 @@
   color: rgba(255,255,255,0.85);
   margin-bottom: 36px;
 }
+
+@media (max-width: 768px) {
+  .promo { padding: 56px 0; }
+  .promo p { font-size: 15px; }
+}

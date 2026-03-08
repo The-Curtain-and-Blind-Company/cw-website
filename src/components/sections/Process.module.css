@@ -63,3 +63,8 @@
   .process { grid-template-columns: 1fr; }
   .image { min-height: 400px; }
 }
+@media (max-width: 768px) {
+  .process { min-height: auto; }
+  .image { min-height: 250px; }
+  .content { padding: 40px 20px; }
+}

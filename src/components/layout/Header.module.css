@@ -201,19 +201,41 @@
 }
 
 @media (max-width: 768px) {
-  .nav { padding: 0 20px; }
-  .inner { height: 70px; gap: 12px; }
+  .nav {
+    padding: 0 20px;
+    /* On mobile, always give nav a background so content is readable */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .inner { height: 64px; gap: 12px; }
   .scrolled .inner { height: 60px; }
   .links { display: none; }
   .toggle { display: block; }
   .phone { display: none; }
 
-  /* Mobile CTA — shorter text handled via content */
+  /* On mobile, always show dark logo since nav bg is white */
+  .logoLight { opacity: 0; }
+  .logoDark { opacity: 1; }
+  .logoLight,
+  .logoDark {
+    height: 14px;
+  }
+
+  /* Hamburger always dark on mobile */
+  .toggle span { background: var(--color-cw-charcoal); }
+
+  /* Mobile CTA */
   .cta {
     padding: 10px 16px !important;
     font-size: 10px !important;
     letter-spacing: 0.8px !important;
   }
 
-  .logo svg { height: 14px; }
+  /* Mobile menu full height */
+  .mobileMenu {
+    padding: 24px 20px 40px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
 }

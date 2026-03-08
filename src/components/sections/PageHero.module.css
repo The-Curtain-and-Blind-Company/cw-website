@@ -33,3 +33,16 @@
   color: rgba(255,255,255,0.7);
   line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 280px;
+    padding: 100px 20px 48px;
+  }
+  .content h1 {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+  .content p {
+    font-size: 15px;
+  }
+}

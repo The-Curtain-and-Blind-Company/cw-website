@@ -117,6 +117,33 @@
 }
 
 @media (max-width: 768px) {
-  .content { padding: 0 24px; }
-  .hero h1 { font-size: 40px; }
+  .hero {
+    min-height: 100svh;
+    padding-top: 80px;
+  }
+  .content {
+    padding: 0 20px;
+    max-width: 100%;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 8vw, 44px);
+    margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  .tag span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .buttons .btn {
+    justify-content: center;
+    width: 100%;
+  }
+  .scroll { display: none; }
 }

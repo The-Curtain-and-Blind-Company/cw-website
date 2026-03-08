@@ -76,5 +76,20 @@
 }
 .card:hover .cardLink { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { aspect-ratio: 16/10; }
+  .cardContent p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .cardLink {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .cardContent h3 { font-size: 22px; }
+  .cardContent p { font-size: 13px; }
+}

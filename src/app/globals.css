@@ -217,6 +217,22 @@ body {
   box-shadow: 0 12px 32px rgba(0,0,0,0.2);
 }
 
+/* ── Mobile Utilities ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .btn {
+    padding: 16px 32px;
+    font-size: 12px;
+    min-height: 48px; /* touch target minimum */
+  }
+  .section-title {
+    font-size: clamp(28px, 6vw, 42px);
+  }
+  .section-subtitle {
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+}
+
 /* ── Reduced Motion ────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
