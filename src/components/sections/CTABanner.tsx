@@ -13,9 +13,8 @@ interface CTABannerProps {
 export default function CTABanner({ headline, subtitle, primaryCTA, secondaryCTA, dark = true }: CTABannerProps) {
   return (
     <section className={`${styles.section} ${dark ? styles.dark : styles.light}`}>
-      <div className={styles.container}>
-        <div className={styles.bg} />
-        <div className={styles.content}>
+      <div className={styles.bg} />
+      <div className={styles.content}>
           <h2 className={styles.headline} dangerouslySetInnerHTML={{ __html: headline }} />
           {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
           <div className={styles.buttons}>
@@ -38,7 +37,6 @@ export default function CTABanner({ headline, subtitle, primaryCTA, secondaryCTA
               </a>
             )}
           </div>
-        </div>
       </div>
     </section>
   )
