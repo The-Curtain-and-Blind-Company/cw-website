@@ -39,10 +39,11 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none;
 }
 
-@media (hover: none) { body { cursor: auto; } }
+/* Only hide native cursor when custom cursor is active */
+html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
+@media (hover: none) { html.has-custom-cursor, html.has-custom-cursor * { cursor: auto !important; } }
 
 ::selection {
   background: var(--color-cw-red);
@@ -96,17 +97,19 @@ body {
   left: 0;
   width: 20px;
   height: 20px;
+  margin: -10px 0 0 -10px;
   border: 1.5px solid var(--color-cw-charcoal);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
-  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s, background 0.3s, opacity 0.3s;
-  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), margin 0.3s var(--ease-out), border-color 0.3s, background 0.3s, opacity 0.3s;
+  will-change: transform;
   background: transparent;
 }
 .cursor--hover {
   width: 50px;
   height: 50px;
+  margin: -25px 0 0 -25px;
   border-color: var(--color-cw-red);
   background: rgba(192, 55, 54, 0.08);
 }
@@ -163,7 +166,6 @@ body {
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 6px;
-  cursor: none;
   border: none;
   transition: all 0.35s var(--ease-out);
   position: relative;

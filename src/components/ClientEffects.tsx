@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
@@ -8,8 +8,6 @@ import Lenis from 'lenis'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function ClientEffects() {
-  const cursorRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     // ── Lenis Smooth Scroll ──
     const lenis = new Lenis({
@@ -21,46 +19,6 @@ export default function ClientEffects() {
     lenis.on('scroll', ScrollTrigger.update)
     gsap.ticker.add((time) => { lenis.raf(time * 1000) })
     gsap.ticker.lagSmoothing(0)
-
-    // ── Custom Cursor ──
-    const cursor = cursorRef.current
-    if (cursor && window.matchMedia('(hover: hover)').matches) {
-      let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0
-
-      const onMouseMove = (e: MouseEvent) => {
-        mouseX = e.clientX
-        mouseY = e.clientY
-      }
-      document.addEventListener('mousemove', onMouseMove)
-
-      const animateCursor = () => {
-        cursorX += (mouseX - cursorX) * 0.15
-        cursorY += (mouseY - cursorY) * 0.15
-        cursor.style.left = cursorX + 'px'
-        cursor.style.top = cursorY + 'px'
-        requestAnimationFrame(animateCursor)
-      }
-      animateCursor()
-
-      // Hover states — use event delegation so new elements are always handled
-      document.addEventListener('mouseover', (e: MouseEvent) => {
-        const target = (e.target as HTMLElement)?.closest('a, button, [data-magnetic], input, select, textarea')
-        if (target) {
-          cursor.classList.add('cursor--hover')
-        }
-      })
-      document.addEventListener('mouseout', (e: MouseEvent) => {
-        const target = (e.target as HTMLElement)?.closest('a, button, [data-magnetic], input, select, textarea')
-        if (target) {
-          cursor.classList.remove('cursor--hover')
-        }
-      })
-
-      // Ensure cursor stays visible — reset on mousedown/mouseup
-      document.addEventListener('mousedown', () => {
-        cursor.style.opacity = '1'
-      })
-    }
 
     // ── Loading screen ──
     const loader = document.getElementById('loader')
@@ -137,8 +95,6 @@ export default function ClientEffects() {
     <>
       {/* Grain overlay */}
       <div className="grain" aria-hidden="true" />
-      {/* Custom cursor */}
-      <div className="cursor" ref={cursorRef} aria-hidden="true" />
       {/* Loading screen */}
       <div className="loader" id="loader">
         <svg xmlns="http://www.w3.org/2000/svg" width="180" height="16" viewBox="0 0 291 22">
