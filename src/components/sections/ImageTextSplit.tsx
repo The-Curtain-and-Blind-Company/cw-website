@@ -11,7 +11,7 @@ interface ImageTextSplitProps {
   body: string
   reversed?: boolean
   dark?: boolean
-  cta?: { label: string; href: string }
+  cta?: { label: string; href?: string; onClick?: () => void }
 }
 
 export default function ImageTextSplit({ image, imageAlt, label, headline, body, reversed, dark, cta }: ImageTextSplitProps) {
@@ -47,10 +47,17 @@ export default function ImageTextSplit({ image, imageAlt, label, headline, body,
           <h2 className={`${styles.headline} ${dark ? styles.headlineLight : ''}`} dangerouslySetInnerHTML={{ __html: headline }} />
           <p className={styles.body}>{body}</p>
           {cta && (
-            <a href={cta.href} className="btn btn-primary" style={{ marginTop: '24px' }}>
-              {cta.label}
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
+            cta.onClick ? (
+              <button onClick={cta.onClick} className="btn btn-primary" style={{ marginTop: '24px' }}>
+                {cta.label}
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </button>
+            ) : (
+              <a href={cta.href} className="btn btn-primary" style={{ marginTop: '24px' }}>
+                {cta.label}
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
+            )
           )}
         </div>
       </div>

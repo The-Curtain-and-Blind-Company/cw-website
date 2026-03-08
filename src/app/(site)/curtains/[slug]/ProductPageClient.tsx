@@ -7,109 +7,69 @@ import FeatureGrid from '@/components/sections/FeatureGrid'
 import ImageTextSplit from '@/components/sections/ImageTextSplit'
 import FAQ from '@/components/sections/FAQ'
 import CTABanner from '@/components/sections/CTABanner'
-import PortableTextRenderer from '@/components/PortableText'
-import styles from './ProductPage.module.css'
+import { getProductContent } from '@/lib/productContent'
 
 interface Product {
   title: string
   shortDescription?: string
   heroImage?: string
-  body?: any
+  slug?: { current: string } | string
   features?: string[]
   specifications?: { label: string; value: string }[]
 }
 
-// Default features when Sanity data is sparse
-const DEFAULT_FEATURES = [
-  { icon: '✦', title: 'Latest Trends', description: 'At the forefront of the soft furnishings industry with the latest styles and fabrics.' },
-  { icon: '☀', title: 'Light Control', description: 'A variety of fabrics and linings that allow as much or as little light as you\'d like.' },
-  { icon: '◆', title: 'Quality Craftsmanship', description: 'Highest quality materials, manufactured locally in our Malaga factory.' },
-  { icon: '🎨', title: 'Custom Made', description: 'Every product made-to-measure to fit your windows perfectly.' },
-  { icon: '📐', title: 'Free Measure & Quote', description: 'Our expert consultants come to you — no obligation, no cost.' },
-  { icon: '🔧', title: 'Professional Install', description: 'Our trained installers handle everything, ensuring a perfect finish.' },
-]
-
-const DEFAULT_FAQ = [
-  { question: 'How long does it take from order to installation?', answer: 'Typically 3-6 weeks depending on the product and fabric availability. Our consultant will give you an accurate timeline during your free measure & quote appointment.' },
-  { question: 'Do you offer a warranty?', answer: 'Yes, all our products come with a comprehensive warranty. The specific warranty period varies by product — your consultant will explain the details for your chosen products.' },
-  { question: 'Can I see fabric samples before ordering?', answer: 'Absolutely. During your free in-home consultation, our consultants bring a wide selection of fabric samples so you can see and feel them in your own home with your own lighting.' },
-  { question: 'Do you service my area?', answer: 'We service the entire Perth metropolitan area and many regional areas. Check our Mobile Showroom page or call us on 08 9249 4800 to confirm.' },
-  { question: 'Is there a minimum order?', answer: 'No minimum order. Whether you need one blind or want to outfit your entire home, we\'re happy to help.' },
-]
-
 export default function ProductPageClient({ product }: { product: Product }) {
   const { open: openConsultation } = useConsultation()
 
-  const features = product.features?.length
-    ? product.features.map((f: string) => ({ title: f, description: '', icon: '✦' }))
-    : DEFAULT_FEATURES
+  // Resolve slug string
+  const slugStr = typeof product.slug === 'string'
+    ? product.slug
+    : product.slug?.current || ''
+
+  // Get structured content for this product
+  const content = getProductContent(slugStr)
+
+  // Pick a default hero image based on slug
+  const heroImage = product.heroImage || getDefaultHeroImage(slugStr)
 
   return (
     <main>
       <ProductHero
         title={product.title}
         subtitle={product.shortDescription}
-        image={product.heroImage || '/images/curtains-blockout.jpg'}
+        image={heroImage}
         onBookConsultation={openConsultation}
       />
 
       <TrustBar />
 
-      {/* Body content from Sanity */}
-      {product.body && (
-        <section className={styles.bodySection}>
-          <div className={styles.bodyContainer}>
-            <PortableTextRenderer value={product.body} />
-          </div>
-        </section>
-      )}
-
       <FeatureGrid
-        label="Why Choose Us"
-        headline="The Best <span class='accent'>Curtains</span> in Perth"
-        subtitle="We've been making curtains in our own Perth factory since 1974."
-        features={features}
+        label={content.featureGridLabel}
+        headline={content.featureGridHeadline!}
+        subtitle={content.featureGridSubtitle}
+        features={content.features}
       />
 
-      <ImageTextSplit
-        image="/images/measure.jpg"
-        label="Our Factory"
-        headline="Locally Made in <span class='accent'>Malaga</span>"
-        body="Every product is manufactured right here in Perth at our Malaga factory. No middlemen, no imports — just quality craftsmanship from our team to your home. This means faster turnaround, better quality control, and the ability to truly customise every order."
-        cta={{ label: 'Visit Our Showroom', href: '/about-us/our-showroom/' }}
-      />
-
-      <ImageTextSplit
-        image="/images/measure.jpg"
-        label="The Process"
-        headline="Free In-Home <span class='accent'>Consultation</span>"
-        body="Our expert consultants come to your home with fabric samples, take precise measurements, and help you choose the perfect window furnishings. No obligation, no pressure — just honest advice from people who know curtains and blinds inside out."
-        reversed
-        cta={{ label: 'Book Now', href: '#' }}
-      />
-
-      {/* Specifications */}
-      {product.specifications?.length ? (
-        <section className={styles.specsSection}>
-          <div className={styles.specsContainer}>
-            <div className="section-label">Specifications</div>
-            <h2 className="section-title">Product <span className="accent">Details</span></h2>
-            <div className={styles.specsGrid}>
-              {product.specifications.map((spec, i) => (
-                <div key={i} className={styles.specItem}>
-                  <div className={styles.specLabel}>{spec.label}</div>
-                  <div className={styles.specValue}>{spec.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
+      {content.sections.map((section, i) => (
+        <ImageTextSplit
+          key={i}
+          image={section.image || '/images/measure.jpg'}
+          label={section.label}
+          headline={section.headline}
+          body={section.body}
+          reversed={section.reversed}
+          cta={section.ctaLabel ? {
+            label: section.ctaLabel,
+            href: section.ctaHref === '#' ? undefined : section.ctaHref,
+            onClick: section.ctaHref === '#' ? openConsultation : undefined,
+          } : undefined}
+        />
+      ))}
 
       <FAQ
         label="Common Questions"
         headline="Frequently <span class='accent'>Asked</span>"
-        items={DEFAULT_FAQ}
+        items={content.faq}
       />
 
       <CTABanner
@@ -120,4 +80,26 @@ export default function ProductPageClient({ product }: { product: Product }) {
       />
     </main>
   )
+}
+
+function getDefaultHeroImage(slug: string): string {
+  if (slug.includes('sheer')) return '/images/curtains-sheer.jpg'
+  if (slug.includes('blockout') && slug.includes('curtain')) return '/images/curtains-blockout.jpg'
+  if (slug.includes('double')) return '/images/curtains-double.jpg'
+  if (slug.includes('linen')) return '/images/curtains-linen.jpg'
+  if (slug.includes('roller') && slug.includes('blockout')) return '/images/blinds-roller-blockout.jpg'
+  if (slug.includes('roller') && slug.includes('sunscreen')) return '/images/blinds-roller-sunscreen.jpg'
+  if (slug.includes('timber')) return '/images/blinds-venetian-timber.jpg'
+  if (slug.includes('aluminium')) return '/images/blinds-venetian-alu.jpg'
+  if (slug.includes('cellular') || slug.includes('honeycomb')) return '/images/blinds-cellular.jpg'
+  if (slug.includes('roman')) return '/images/blinds-roman.jpg'
+  if (slug.includes('vertical')) return '/images/blinds-vertical.jpg'
+  if (slug.includes('veri')) return '/images/blinds-verishade.jpg'
+  if (slug.includes('shutter')) return '/images/shutters.jpg'
+  if (slug.includes('outdoor') || slug.includes('zip') || slug.includes('patio') || slug.includes('cafe') || slug.includes('alfresco')) return '/images/outdoor.jpg'
+  if (slug.includes('motoris')) return '/images/motorised.jpg'
+  if (slug.includes('norman')) return '/images/norman-sheers.jpg'
+  if (slug.includes('blind')) return '/images/blinds-all.jpg'
+  if (slug.includes('curtain')) return '/images/curtains-all.jpg'
+  return '/images/curtains-all.jpg'
 }
