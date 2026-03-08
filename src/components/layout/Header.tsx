@@ -41,10 +41,15 @@ export default function Header() {
             className={styles.logoLight}
             priority
           />
-          {/* Dark logo (SVG) for scrolled white header */}
-          <span className={styles.logoDark}>
-            <CWLogo />
-          </span>
+          {/* Color logo (red+charcoal) for scrolled white header */}
+          <Image
+            src="/cw-logo-color.png"
+            alt="CurtainWorld"
+            width={220}
+            height={18}
+            className={styles.logoDark}
+            priority
+          />
         </Link>
 
         <ul className={styles.links}>
