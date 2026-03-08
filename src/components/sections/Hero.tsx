@@ -3,7 +3,26 @@
 import ArrowIcon from '../ArrowIcon'
 import styles from './Hero.module.css'
 
-export default function Hero() {
+interface HeroProps {
+  data?: {
+    heroHeadline?: string
+    heroSubheadline?: string
+  }
+  cta?: { text?: string; url?: string }
+}
+
+function renderHeadline(text: string) {
+  // Replace [word] with <span class="accent">word</span>
+  const parts = text.split(/\[([^\]]+)\]/)
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <span key={i} className="accent">{part}</span> : part
+  )
+}
+
+export default function Hero({ data, cta }: HeroProps) {
+  const headline = data?.heroHeadline || 'Making Beautiful Windows [Wonderful]'
+  const subheadline = data?.heroSubheadline || "Custom-made curtains, blinds & shutters — designed in our showroom, handcrafted in our Malaga factory, installed by our expert team."
+
   return (
     <section className={styles.hero}>
       <div className={styles.media}>
@@ -17,11 +36,11 @@ export default function Hero() {
           <div className={styles.tagDot} />
           <span>Proudly WA Owned Since 1974</span>
         </div>
-        <h1>Making Beautiful Windows <span className="accent">Wonderful</span></h1>
-        <p>Custom-made curtains, blinds &amp; shutters — designed in our showroom, handcrafted in our Malaga factory, installed by our expert team. If you can&apos;t see us, we&apos;ll come to you.</p>
+        <h1>{renderHeadline(headline)}</h1>
+        <p>{subheadline}</p>
         <div className={styles.buttons}>
-          <a href="/book-a-free-measure-quote/" className="btn btn-primary">
-            Book Free Measure &amp; Quote
+          <a href={cta?.url || '/book-a-free-measure-quote/'} className="btn btn-primary">
+            {cta?.text || 'Book Free Measure & Quote'}
             <ArrowIcon />
           </a>
           <a href="/curtains/" className="btn btn-outline">Explore Our Range</a>

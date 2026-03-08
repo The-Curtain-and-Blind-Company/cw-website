@@ -1,6 +1,22 @@
 import styles from './Heritage.module.css'
 
-export default function Heritage() {
+interface HeritageProps {
+  data?: {
+    heritageHeadline?: string
+    heritageBody?: string
+    heritageStats?: Array<{ _key: string; number: string; label: string }>
+  }
+}
+
+export default function Heritage({ data }: HeritageProps) {
+  const headline = data?.heritageHeadline || 'Making Beautiful Curtains & Blinds Since 1974'
+  const body = data?.heritageBody || "For over 50 years, CurtainWorld has been Perth's most trusted name in window furnishings. From our Malaga factory and showroom, we design, manufacture, and install every product ourselves."
+  const stats = data?.heritageStats?.length ? data.heritageStats : [
+    { _key: 'y', number: '50', label: 'Years' },
+    { _key: 'c', number: '50,000+', label: 'Happy Customers' },
+    { _key: 'p', number: '100%', label: 'Perth Made' },
+  ]
+
   return (
     <section className={styles.heritage}>
       <div className={styles.bg}>
@@ -11,22 +27,19 @@ export default function Heritage() {
         <div className={styles.grid}>
           <div className={styles.content}>
             <div className="section-label section-label--light">Our Heritage</div>
-            <h2>Making Beautiful Curtains &amp; Blinds <span className="accent">Since 1974</span></h2>
-            <p>For over 50 years, CurtainWorld has been Perth&apos;s most trusted name in window furnishings. From our Malaga factory and showroom, we design, manufacture, and install every product ourselves.</p>
+            <h2>{headline.includes('Since') ?
+              <>{headline.split('Since')[0]}<span className="accent">Since{headline.split('Since')[1]}</span></> :
+              headline
+            }</h2>
+            <p>{body}</p>
             <p>No middlemen. No compromises. Just beautiful curtains, blinds &amp; shutters — made right here in Western Australia by a team that genuinely cares about your home.</p>
             <div className={styles.stats}>
-              <div className={styles.statItem}>
-                <div className={styles.statNumber}>50</div>
-                <div className={styles.statLabel}>Years</div>
-              </div>
-              <div className={styles.statItem}>
-                <div className={styles.statNumber}>50,000+</div>
-                <div className={styles.statLabel}>Happy Customers</div>
-              </div>
-              <div className={styles.statItem}>
-                <div className={styles.statNumber}>100%</div>
-                <div className={styles.statLabel}>Perth Made</div>
-              </div>
+              {stats.map(s => (
+                <div key={s._key} className={styles.statItem}>
+                  <div className={styles.statNumber}>{s.number}</div>
+                  <div className={styles.statLabel}>{s.label}</div>
+                </div>
+              ))}
             </div>
           </div>
           <div className={styles.videoEmbed}>

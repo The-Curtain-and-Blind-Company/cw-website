@@ -8,7 +8,11 @@ const STEPS = [
   { num: 4, text: 'Professional installation', sub: 'fitted by our expert team, guaranteed' },
 ]
 
-export default function Process() {
+interface ProcessProps {
+  cta?: { text?: string; url?: string }
+}
+
+export default function Process({ cta }: ProcessProps) {
   return (
     <section className={styles.process}>
       <div className={styles.image}>
@@ -27,8 +31,8 @@ export default function Process() {
             </li>
           ))}
         </ul>
-        <a href="/book-a-free-measure-quote/" className="btn btn-dark">
-          Book Your Free Measure &amp; Quote
+        <a href={cta?.url || '/book-a-free-measure-quote/'} className="btn btn-dark">
+          {cta?.text || 'Book Your Free Measure & Quote'}
           <ArrowIcon />
         </a>
       </div>

@@ -2,14 +2,22 @@
 
 import styles from './Statement.module.css'
 
-const STATS = [
+const DEFAULT_STATS = [
   { number: '50+', label: 'Years in Business' },
   { number: '50,000+', label: 'Windows Dressed' },
   { number: '120', label: 'Expert Team Members' },
   { number: '100%', label: 'Perth Made' },
 ]
 
-export default function Statement() {
+interface StatementProps {
+  data?: {
+    heritageStats?: Array<{ _key: string; number: string; label: string }>
+  }
+}
+
+export default function Statement({ data }: StatementProps) {
+  const stats = data?.heritageStats?.length ? data.heritageStats : DEFAULT_STATS
+
   return (
     <section className={styles.statement}>
       <div className={styles.container}>
@@ -20,7 +28,7 @@ export default function Statement() {
           </h2>
         </div>
         <div className={styles.statRow}>
-          {STATS.map(stat => (
+          {stats.map(stat => (
             <div key={stat.label} className={styles.statItem}>
               <div className={styles.statNumber}>{stat.number}</div>
               <div className={styles.statLabel}>{stat.label}</div>
