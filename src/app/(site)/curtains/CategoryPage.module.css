@@ -1,0 +1,20 @@
+.productsSection {
+  padding: var(--section-pad) 0;
+}
+.productsContainer {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

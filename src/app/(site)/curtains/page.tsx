@@ -2,58 +2,42 @@ import { client } from '@/sanity/lib/client'
 import { productsByCategoryQuery } from '@/sanity/lib/queries'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import PageHero from '@/components/sections/PageHero'
-import Link from 'next/link'
+import CategoryPageClient from './CategoryPageClient'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Curtains Perth | Custom Made Curtains',
-  description: 'Premium custom-made curtains from CurtainWorld. Sheer, blockout, S-fold, double curtains — handcrafted in our Malaga factory. Free measure & quote.',
+  description: 'Premium custom-made curtains from CurtainWorld Perth. Sheer, blockout, double, s-fold & motorised curtains. Made in our Malaga factory since 1974.',
+}
+
+const CURTAIN_IMAGES: Record<string, string> = {
+  'curtains': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_All_Default3-900x760.jpg',
+  'blockout-curtains': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_Blockout_All-900x760.jpg',
+  'sheer-curtains': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_Sheer_All_Default2-900x760.jpg',
+  'doublecurtains': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_Double_All_Default-900x760.jpg',
+  'linen-blend-sheer-curtains': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_Sheer_All_Default2-900x760.jpg',
+  'office-curtains': 'https://curtainworld.com.au/wp-content/uploads/2021/01/curtains_tab_900x760-900x760.jpg',
 }
 
 export default async function CurtainsPage() {
   const products = await client.fetch(productsByCategoryQuery, { category: 'curtains' })
 
+  const enriched = products?.map((p: any) => ({
+    ...p,
+    image: CURTAIN_IMAGES[p.slug?.current?.replace('curtains/', '') || ''] || CURTAIN_IMAGES['curtains'],
+    href: `/curtains/${p.slug?.current?.replace('curtains/', '') || p.slug?.current}`,
+  })) || []
+
   return (
     <>
       <Header />
-      <main>
-        <PageHero
-          title="Curtains"
-          subtitle="Sheer, blockout, S-fold & double — handcrafted in our Malaga factory"
-          image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_All_Default4-900x760.jpg"
-        />
-        <section style={{ padding: 'var(--section-pad) 0' }}>
-          <div style={{ maxWidth: 'var(--container)', margin: '0 auto', padding: '0 24px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '32px' }}>
-              {products?.map((product: { _id: string; title: string; slug: { current: string }; shortDescription?: string }) => (
-                <Link
-                  key={product._id}
-                  href={`/curtains/${product.slug.current.replace('curtains/', '')}`}
-                  style={{
-                    display: 'block',
-                    padding: '32px',
-                    background: 'var(--color-cw-light)',
-                    borderRadius: '12px',
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    transition: 'transform 0.3s, box-shadow 0.3s',
-                  }}
-                >
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 700, marginBottom: '8px' }}>
-                    {product.title}
-                  </h3>
-                  {product.shortDescription && (
-                    <p style={{ color: 'var(--color-cw-slate)', fontSize: '15px', lineHeight: '1.6' }}>
-                      {product.shortDescription}
-                    </p>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
+      <CategoryPageClient
+        title="Curtains Perth"
+        subtitle="Beautiful, custom-made curtains crafted in our Malaga factory. From light-filtering sheers to room-darkening blockouts — every pair made to your exact specifications."
+        heroImage="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_All_Default3-900x760.jpg"
+        products={enriched}
+        categoryDescription="Whether you're looking for the elegance of S-fold curtains, the practicality of blockout curtains, or the soft beauty of sheer curtains, CurtainWorld has been Perth's trusted curtain maker since 1974. Every curtain is manufactured in our own factory — no middlemen, no imports."
+      />
       <Footer />
     </>
   )

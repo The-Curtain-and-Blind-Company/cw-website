@@ -1,0 +1,220 @@
+/* ── Hero ──────────────────────────────────────────── */
+.hero {
+  padding: 160px 24px 80px;
+  background: var(--color-cw-charcoal);
+  text-align: center;
+}
+.heroContent {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.heroSub {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+/* ── Grid ──────────────────────────────────────────── */
+.section {
+  padding: var(--section-pad) 0;
+}
+.grid {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Info cards */
+.infoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card {
+  padding: 28px 24px;
+  background: var(--color-cw-light);
+  border-radius: 16px;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+.cardIcon {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-cw-charcoal);
+  margin-bottom: 8px;
+}
+.cardText {
+  font-size: 14px;
+  color: var(--color-cw-slate);
+  line-height: 1.6;
+  margin: 0;
+}
+.cardMeta {
+  font-size: 12px;
+  color: var(--color-cw-silver);
+  margin-top: 4px;
+}
+.cardLink {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-cw-red);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-body);
+  transition: color 0.3s;
+}
+.cardLink:hover {
+  color: var(--color-cw-red-bright);
+}
+.phoneLink {
+  color: var(--color-cw-charcoal);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Form */
+.formCol {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 40px;
+}
+.formTitle {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-cw-charcoal);
+  margin-bottom: 28px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-cw-slate);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-cw-charcoal);
+  background: var(--color-cw-light);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--color-cw-red);
+  box-shadow: 0 0 0 3px rgba(192, 55, 54, 0.1);
+  background: white;
+}
+.field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Success */
+.success {
+  text-align: center;
+  padding: 40px 20px;
+}
+.successIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(192, 55, 54, 0.1);
+  color: var(--color-cw-red);
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+.success h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.success p {
+  color: var(--color-cw-slate);
+  font-size: 15px;
+}
+
+/* Map */
+.mapSection {
+  margin-top: -20px;
+}
+.mapSection iframe {
+  display: block;
+  filter: grayscale(0.2) contrast(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 120px 20px 60px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .infoCol {
+    grid-template-columns: 1fr;
+  }
+  .formCol {
+    padding: 28px 20px;
+  }
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

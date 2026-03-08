@@ -3,9 +3,7 @@ import { productQuery } from '@/sanity/lib/queries'
 import { groq } from 'next-sanity'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import PageHero from '@/components/sections/PageHero'
-import PortableTextRenderer from '@/components/PortableText'
-import Promo from '@/components/sections/Promo'
+import ProductPageClient from '../../curtains/[slug]/ProductPageClient'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
@@ -32,18 +30,7 @@ export default async function BlindProductPage({ params }: Props) {
   return (
     <>
       <Header />
-      <main>
-        <PageHero title={product.title} />
-        <section style={{ padding: 'var(--section-pad) 0' }}>
-          <div style={{ maxWidth: 'var(--container)', margin: '0 auto', padding: '0 24px' }}>
-            <div style={{ maxWidth: '780px' }}>
-              {product.shortDescription && <p style={{ fontSize: '18px', color: 'var(--color-cw-slate)', lineHeight: '1.8', marginBottom: '32px' }}>{product.shortDescription}</p>}
-              <PortableTextRenderer value={product.body} />
-            </div>
-          </div>
-        </section>
-        <Promo />
-      </main>
+      <ProductPageClient product={product} />
       <Footer />
     </>
   )
