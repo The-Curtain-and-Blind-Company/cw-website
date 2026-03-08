@@ -1,0 +1,96 @@
+.heritage {
+  position: relative;
+  padding: var(--section-pad) 0;
+  background: var(--color-cw-charcoal);
+  overflow: hidden;
+}
+.bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+}
+.bg img { width: 100%; height: 100%; object-fit: cover; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.2vw, 48px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.content h2 .accent, .content h2 :global(.accent) { color: var(--color-cw-red-bright); }
+.content p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  max-width: 480px;
+}
+.stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.statNumber {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 700;
+  color: var(--color-cw-red-bright);
+  line-height: 1;
+}
+.statLabel {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 6px;
+}
+.videoEmbed {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.videoEmbed video { width: 100%; height: 100%; object-fit: cover; }
+.videoPlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.videoPlay:hover { background: rgba(0,0,0,0.1); }
+.playBtn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-cw-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s var(--ease-out);
+  box-shadow: 0 8px 30px rgba(192, 55, 54, 0.4);
+}
+.playBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(192, 55, 54, 0.5);
+}
+.playBtn svg { margin-left: 4px; }
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+  .stats { flex-direction: column; gap: 24px; }
+}

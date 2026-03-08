@@ -1,0 +1,26 @@
+.promo {
+  background: var(--color-cw-red);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.promo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
+}
+.container { position: relative; z-index: 1; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+.promo h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.2vw, 48px);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+.promo p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 36px;
+}

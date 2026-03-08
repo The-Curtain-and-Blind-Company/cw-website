@@ -1,0 +1,80 @@
+.categories {
+  padding: var(--section-pad) 0;
+  background: var(--color-cw-white);
+}
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.card {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+.card:hover img { transform: scale(1.08); }
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.05) 50%, transparent 100%);
+  transition: background 0.5s;
+}
+.card:hover .cardOverlay {
+  background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.15) 60%, transparent 100%);
+}
+.cardContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 24px;
+}
+.cardContent h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+.cardContent p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s 0.1s var(--ease-out);
+}
+.card:hover .cardContent p { opacity: 1; transform: translateY(0); }
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s 0.15s var(--ease-out);
+}
+.card:hover .cardLink { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
