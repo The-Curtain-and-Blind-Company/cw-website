@@ -98,7 +98,7 @@ html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
   width: 20px;
   height: 20px;
   margin: -10px 0 0 -10px;
-  border: 1.5px solid var(--color-cw-charcoal);
+  border: 1.5px solid var(--color-cw-red);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
