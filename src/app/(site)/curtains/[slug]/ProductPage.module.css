@@ -1,0 +1,54 @@
+.bodySection {
+  padding: var(--section-pad) 0;
+}
+.bodyContainer {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.bodyContainer > div {
+  max-width: 780px;
+}
+
+/* ── Specs Section ─────────────────────────────────── */
+.specsSection {
+  padding: var(--section-pad) 0;
+  background: var(--color-cw-light);
+}
+.specsContainer {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.specsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+.specItem {
+  background: white;
+  padding: 24px 28px;
+}
+.specLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-cw-slate);
+  margin-bottom: 6px;
+}
+.specValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-cw-charcoal);
+}
+
+@media (max-width: 768px) {
+  .specsGrid {
+    grid-template-columns: 1fr;
+  }
+}

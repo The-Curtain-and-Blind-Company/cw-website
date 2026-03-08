@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import CWLogo from '../CWLogo'
 import ArrowIcon from '../ArrowIcon'
+import { useConsultation } from '../ConsultationContext'
 import styles from './Header.module.css'
 
 const NAV_LINKS = [
@@ -18,6 +19,7 @@ const NAV_LINKS = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { open: openConsultation } = useConsultation()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
@@ -43,10 +45,10 @@ export default function Header() {
 
         <a href="tel:+61892494800" className={styles.phone}>08 9249 4800</a>
 
-        <Link href="/book-a-free-measure-quote/" className={styles.cta}>
+        <button className={styles.cta} onClick={openConsultation} type="button">
           Free Measure &amp; Quote
           <ArrowIcon />
-        </Link>
+        </button>
 
         <button
           className={styles.toggle}
@@ -58,27 +60,27 @@ export default function Header() {
       </div>
 
       {/* Mobile menu */}
-      {mobileOpen && (
-        <div className={styles.mobileMenu}>
-          <ul>
-            {NAV_LINKS.map(link => (
-              <li key={link.href}>
-                <Link href={link.href} onClick={() => setMobileOpen(false)}>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/book-a-free-measure-quote/"
-            className="btn btn-primary"
-            style={{ width: '100%', justifyContent: 'center', marginTop: 16 }}
-            onClick={() => setMobileOpen(false)}
-          >
-            Free Measure &amp; Quote
-          </Link>
-        </div>
-      )}
+      <div className={`${styles.mobileMenu} ${mobileOpen ? styles.mobileMenuOpen : ''}`}>
+        <ul>
+          {NAV_LINKS.map(link => (
+            <li key={link.href}>
+              <Link href={link.href} onClick={() => setMobileOpen(false)}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li><Link href="/support/" onClick={() => setMobileOpen(false)}>Support</Link></li>
+          <li><Link href="/contact/" onClick={() => setMobileOpen(false)}>Contact</Link></li>
+        </ul>
+        <a href="tel:+61892494800" className={styles.mobilePhone}>📞 08 9249 4800</a>
+        <button
+          className="btn btn-primary"
+          style={{ width: '100%', justifyContent: 'center', marginTop: 12 }}
+          onClick={() => { setMobileOpen(false); openConsultation(); }}
+        >
+          Free Measure &amp; Quote
+        </button>
+      </div>
     </nav>
   )
 }

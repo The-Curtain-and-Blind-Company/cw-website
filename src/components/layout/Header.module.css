@@ -21,20 +21,24 @@
   height: 90px;
   max-width: 1440px;
   margin: 0 auto;
+  gap: 24px;
   transition: height 0.4s;
 }
 .scrolled .inner { height: 72px; }
 
+/* ── Logo ──────────────────────────────────────────── */
 .logo {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: white;
   transition: color 0.4s;
+  flex-shrink: 0;
 }
 .logo svg { height: 18px; width: auto; }
 .scrolled .logo { color: var(--color-cw-charcoal); }
 
+/* ── Nav Links ─────────────────────────────────────── */
 .links {
   display: flex;
   align-items: center;
@@ -53,6 +57,7 @@
   position: relative;
   padding: 4px 0;
   transition: color 0.3s;
+  white-space: nowrap;
 }
 .scrolled .links a { color: var(--color-cw-charcoal); }
 .links a:hover { color: var(--color-cw-red) !important; }
@@ -68,6 +73,7 @@
 }
 .links a:hover::after { width: 100%; }
 
+/* ── Phone ─────────────────────────────────────────── */
 .phone {
   font-size: 14px;
   font-weight: 600;
@@ -75,9 +81,12 @@
   text-decoration: none;
   letter-spacing: 0.5px;
   transition: color 0.4s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .scrolled .phone { color: var(--color-cw-charcoal); }
 
+/* ── CTA Button ────────────────────────────────────── */
 .cta {
   display: inline-flex;
   align-items: center;
@@ -86,6 +95,7 @@
   color: white !important;
   padding: 14px 28px !important;
   border-radius: 6px;
+  font-family: var(--font-body);
   font-weight: 600 !important;
   font-size: 12px !important;
   letter-spacing: 1px !important;
@@ -93,6 +103,9 @@
   text-decoration: none;
   transition: all 0.35s var(--ease-out);
   white-space: nowrap;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
 }
 .cta:hover {
   background: var(--color-cw-red-bright) !important;
@@ -100,12 +113,14 @@
   box-shadow: 0 8px 24px rgba(192, 55, 54, 0.25);
 }
 
+/* ── Mobile Toggle ─────────────────────────────────── */
 .toggle {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
+  flex-shrink: 0;
 }
 .toggle span {
   display: block;
@@ -117,6 +132,7 @@
 }
 .scrolled .toggle span { background: var(--color-cw-charcoal); }
 
+/* ── Mobile Menu ───────────────────────────────────── */
 .mobileMenu {
   position: absolute;
   top: 100%;
@@ -125,6 +141,15 @@
   background: white;
   padding: 24px var(--side-margin);
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s var(--ease-out), opacity 0.4s;
+}
+.mobileMenuOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 .mobileMenu ul {
   list-style: none;
@@ -142,14 +167,36 @@
   font-size: 16px;
   font-weight: 500;
 }
+.mobilePhone {
+  display: block;
+  padding: 16px 0 8px;
+  color: var(--color-cw-charcoal);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
 
-@media (max-width: 768px) {
-  .links { display: none; }
-  .toggle { display: block; }
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .links { gap: 20px; }
+  .links a { font-size: 11px; }
   .phone { display: none; }
 }
 
-@media (max-width: 1024px) {
-  .links { gap: 20px; }
-  .links a { font-size: 11px; }
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .inner { height: 70px; gap: 12px; }
+  .scrolled .inner { height: 60px; }
+  .links { display: none; }
+  .toggle { display: block; }
+  .phone { display: none; }
+
+  /* Mobile CTA — shorter text handled via content */
+  .cta {
+    padding: 10px 16px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.8px !important;
+  }
+
+  .logo svg { height: 14px; }
 }
