@@ -17,13 +17,18 @@ const NAV_LINKS = [
   { label: 'About Us', href: '/about-us/' },
 ]
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
+interface HeaderProps {
+  /** When true, header starts transparent with white text (for dark hero backgrounds). Default false = solid white header. */
+  transparent?: boolean
+}
+
+export default function Header({ transparent = false }: HeaderProps) {
+  const [scrolled, setScrolled] = useState(!transparent)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { open: openConsultation } = useConsultation()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80)
+    const handleScroll = () => setScrolled(!transparent || window.scrollY > 80)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])

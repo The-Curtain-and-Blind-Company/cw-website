@@ -33,7 +33,7 @@ export default async function HomePage() {
   return (
     <>
       <ClientEffects />
-      <Header />
+      <Header transparent />
       <main>
         <Hero data={homepage} cta={settings?.primaryCta} />
         <Categories data={homepage} />
