@@ -21,7 +21,7 @@ export default function Heritage({ data }: HeritageProps) {
     <section className={styles.heritage}>
       <div className={styles.bg}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="https://curtainworld.com.au/wp-content/uploads/2023/07/CW_Winter_Sale_Home_1920x1280-1920x1280.jpg" alt="" loading="lazy" />
+        <img src="/images/hero-bg.jpg" alt="" loading="lazy" />
       </div>
       <div className={styles.container}>
         <div className={styles.grid}>
@@ -43,8 +43,8 @@ export default function Heritage({ data }: HeritageProps) {
             </div>
           </div>
           <div className={styles.videoEmbed}>
-            <video muted loop playsInline poster="https://curtainworld.com.au/wp-content/uploads/2023/07/CW_Winter_Sale_Home_1920x1280-1920x1280.jpg">
-              <source src="https://curtainworld.com.au/wp-content/uploads/2021/01/CW_homepage.mp4" type="video/mp4" />
+            <video muted loop playsInline poster="/images/hero-bg.jpg">
+              <source src="/images/hero-video.mp4" type="video/mp4" />
             </video>
             <div className={styles.videoPlay}>
               <div className={styles.playBtn}>

@@ -26,8 +26,8 @@ export default function Hero({ data, cta }: HeroProps) {
   return (
     <section className={styles.hero}>
       <div className={styles.media}>
-        <video autoPlay muted loop playsInline poster="https://curtainworld.com.au/wp-content/uploads/2023/07/CW_Winter_Sale_Home_1920x1280-1920x1280.jpg">
-          <source src="https://curtainworld.com.au/wp-content/uploads/2021/01/CW_homepage.mp4" type="video/mp4" />
+        <video autoPlay muted loop playsInline poster="/images/hero-bg.jpg">
+          <source src="/images/hero-video.mp4" type="video/mp4" />
         </video>
       </div>
       <div className={styles.overlay} />

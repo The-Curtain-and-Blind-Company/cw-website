@@ -2,10 +2,10 @@ import ArrowIcon from '../ArrowIcon'
 import styles from './Categories.module.css'
 
 const DEFAULT_CATEGORIES = [
-  { title: 'Curtains', description: 'Sheer, blockout, S-fold & double — handcrafted in our Malaga factory.', image: 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_All_Default4-900x760.jpg', url: '/curtains/' },
-  { title: 'Blinds', description: 'Roller, venetian, honeycomb, roman & vertical — precision-made to measure.', image: 'https://curtainworld.com.au/wp-content/uploads/2021/01/blinds_tab_900x760-900x760.jpg', url: '/blinds-perth/' },
-  { title: 'Shutters', description: 'Timeless plantation shutters — the ultimate in style, light control & privacy.', image: 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Shutters_All_Default3-900x760.jpg', url: '/plantation-shutters/' },
-  { title: 'Outdoor', description: 'Café blinds, ziptrak & alfresco — extend your living space year-round.', image: 'https://curtainworld.com.au/wp-content/uploads/2021/01/category-outdoor-900x760.jpg', url: '/outdoor/' },
+  { title: 'Curtains', description: 'Sheer, blockout, S-fold & double — handcrafted in our Malaga factory.', image: '/images/curtains-all.jpg', url: '/curtains/' },
+  { title: 'Blinds', description: 'Roller, venetian, honeycomb, roman & vertical — precision-made to measure.', image: '/images/blinds-all.jpg', url: '/blinds-perth/' },
+  { title: 'Shutters', description: 'Timeless plantation shutters — the ultimate in style, light control & privacy.', image: '/images/shutters.jpg', url: '/plantation-shutters/' },
+  { title: 'Outdoor', description: 'Café blinds, ziptrak & alfresco — extend your living space year-round.', image: '/images/outdoor.jpg', url: '/outdoor/' },
 ]
 
 interface CategoriesProps {

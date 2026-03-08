@@ -17,7 +17,7 @@ export default function Process({ cta }: ProcessProps) {
     <section className={styles.process}>
       <div className={styles.image}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="https://curtainworld.com.au/wp-content/uploads/2021/01/measureandquote2_1480x1200-740x600.jpg" alt="In-home consultation" loading="lazy" />
+        <img src="/images/measure.jpg" alt="In-home consultation" loading="lazy" />
       </div>
       <div className={styles.content}>
         <div className="section-label">How It Works</div>

@@ -49,7 +49,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
       <ProductHero
         title={product.title}
         subtitle={product.shortDescription}
-        image={product.heroImage || 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_Blockout_All-900x760.jpg'}
+        image={product.heroImage || '/images/curtains-blockout.jpg'}
         onBookConsultation={openConsultation}
       />
 
@@ -72,7 +72,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
       />
 
       <ImageTextSplit
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Factory.jpg"
+        image="/images/measure.jpg"
         label="Our Factory"
         headline="Locally Made in <span class='accent'>Malaga</span>"
         body="Every product is manufactured right here in Perth at our Malaga factory. No middlemen, no imports — just quality craftsmanship from our team to your home. This means faster turnaround, better quality control, and the ability to truly customise every order."
@@ -80,7 +80,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
       />
 
       <ImageTextSplit
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Measure.jpg"
+        image="/images/measure.jpg"
         label="The Process"
         headline="Free In-Home <span class='accent'>Consultation</span>"
         body="Our expert consultants come to your home with fabric samples, take precise measurements, and help you choose the perfect window furnishings. No obligation, no pressure — just honest advice from people who know curtains and blinds inside out."

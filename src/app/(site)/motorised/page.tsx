@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 }
 
 const MOTORISED_IMAGES: Record<string, string> = {
-  'default': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Motorised_All_Default-900x760.jpg',
-  'motorised-curtains': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_All_Default3-900x760.jpg',
-  'motorised-blinds': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_RollerBlockout_All_Default2-900x760.jpg',
-  'motionblinds-at-curtainworld': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Motorised_All_Default-900x760.jpg',
+  'default': '/images/motorised.jpg',
+  'motorised-curtains': '/images/curtains-all.jpg',
+  'motorised-blinds': '/images/blinds-roller-blockout.jpg',
+  'motionblinds-at-curtainworld': '/images/motorised.jpg',
 }
 
 export default async function MotorisedPage() {

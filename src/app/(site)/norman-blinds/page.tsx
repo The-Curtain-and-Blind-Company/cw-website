@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 }
 
 const NORMAN_IMAGES: Record<string, string> = {
-  'default': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Norman_All_Default-900x760.jpg',
-  'norman-honeycomb-shades': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_Cellular_All_Default2-900x760.jpg',
-  'norman-perfectsheer': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_Sheer_All_Default2-900x760.jpg',
-  'norman-roman-shades': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_Roman_All_Default-900x760.jpg',
-  'norman-smartdrape': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_All_Default3-900x760.jpg',
-  'norman-soluna-roller-shades': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_RollerBlockout_All_Default2-900x760.jpg',
+  'default': '/images/norman-sheers.jpg',
+  'norman-honeycomb-shades': '/images/blinds-cellular.jpg',
+  'norman-perfectsheer': '/images/curtains-sheer.jpg',
+  'norman-roman-shades': '/images/blinds-roman.jpg',
+  'norman-smartdrape': '/images/curtains-all.jpg',
+  'norman-soluna-roller-shades': '/images/blinds-roller-blockout.jpg',
 }
 
 export default async function NormanBlindsPage() {

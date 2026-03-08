@@ -17,7 +17,7 @@ export default async function ShuttersPage() {
     title: data?.title || 'Plantation Shutters Perth',
     shortDescription: data?.shortDescription || 'The ultimate in style, light control and privacy. Plantation shutters add timeless elegance to any room while giving you precise control over light and airflow.',
     body: data?.body,
-    heroImage: 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Shutters_All_Default3-900x760.jpg',
+    heroImage: '/images/shutters.jpg',
     features: data?.features,
     specifications: data?.specifications,
   }

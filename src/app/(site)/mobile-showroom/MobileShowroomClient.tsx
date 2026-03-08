@@ -36,7 +36,7 @@ export default function MobileShowroomClient({ suburbs }: { suburbs: Suburb[] })
       <ProductHero
         title="Mobile Showroom"
         subtitle="Can't visit us? We'll come to you — free in-home consultations across the entire Perth metro area and beyond."
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Mobile_Showroom-900x760.jpg"
+        image="/images/mobile-showroom.jpg"
         onBookConsultation={openConsultation}
       />
 
@@ -87,7 +87,7 @@ export default function MobileShowroomClient({ suburbs }: { suburbs: Suburb[] })
       </section>
 
       <ImageTextSplit
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Measure.jpg"
+        image="/images/measure.jpg"
         label="How It Works"
         headline="Bringing the Showroom <span class='accent'>To You</span>"
         body="Our mobile showroom consultants carry a full range of fabric samples, motorised options, and product displays. They'll measure your windows, discuss your style preferences, and provide a quote on the spot. All in the comfort of your home."

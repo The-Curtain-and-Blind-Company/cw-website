@@ -60,7 +60,7 @@ export default function CategoryPageClient({ title, subtitle, heroImage, product
       </section>
 
       <ImageTextSplit
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Factory.jpg"
+        image="/images/measure.jpg"
         label="Made in Perth"
         headline="Locally Crafted in <span class='accent'>Malaga</span>"
         body={categoryDescription}
@@ -68,7 +68,7 @@ export default function CategoryPageClient({ title, subtitle, heroImage, product
       />
 
       <ImageTextSplit
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Measure.jpg"
+        image="/images/measure.jpg"
         label="How It Works"
         headline="Free In-Home <span class='accent'>Consultation</span>"
         body="Our expert consultants come to your home with fabric samples, take precise measurements, and help you choose the perfect window furnishings. No obligation, no pressure — just honest advice from people who've been doing this for 50 years."

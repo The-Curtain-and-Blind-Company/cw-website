@@ -33,7 +33,7 @@ export default function SuburbPageClient({ suburb }: { suburb: Suburb }) {
       <ProductHero
         title={`Curtains & Blinds ${suburb.name}`}
         subtitle={`Custom window furnishings delivered and professionally installed in ${suburb.name}. Perth's trusted name since 1974.`}
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Mobile_Showroom-900x760.jpg"
+        image="/images/mobile-showroom.jpg"
         onBookConsultation={openConsultation}
       />
 
@@ -57,7 +57,7 @@ export default function SuburbPageClient({ suburb }: { suburb: Suburb }) {
       />
 
       <ImageTextSplit
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Measure.jpg"
+        image="/images/measure.jpg"
         label="How It Works"
         headline="We Come to <span class='accent'>You</span>"
         body={`Our expert consultants service ${suburb.name} and surrounding areas. We bring fabric samples, take precise measurements, and provide honest advice — all in the comfort of your home. No showroom visit required.`}
@@ -65,7 +65,7 @@ export default function SuburbPageClient({ suburb }: { suburb: Suburb }) {
       />
 
       <ImageTextSplit
-        image="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Factory.jpg"
+        image="/images/measure.jpg"
         label="Factory Direct"
         headline="Made in Our <span class='accent'>Malaga Factory</span>"
         body="Unlike other companies, we manufacture everything right here in Perth. That means faster turnaround, better quality control, and the ability to customise every order. From your home to our factory and back — no middlemen involved."

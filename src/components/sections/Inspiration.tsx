@@ -1,11 +1,11 @@
 import styles from './Inspiration.module.css'
 
 const IMAGES = [
-  { src: 'https://curtainworld.com.au/wp-content/uploads/2023/07/CW_Winter_Sale_Home_1920x1280-1920x1280.jpg', alt: 'Living room with curtains' },
-  { src: 'https://curtainworld.com.au/wp-content/uploads/2024/01/Zipscreen_outdoor_blinds_-_external_blinds__%E2%80%93_44-e1704680616308.jpg', alt: 'Outdoor blinds' },
-  { src: 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_motorised_1480x1200.jpg', alt: 'Motorised curtains' },
-  { src: 'https://curtainworld.com.au/wp-content/uploads/2021/01/measureandquote2_1480x1200-740x600.jpg', alt: 'Consultation' },
-  { src: 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_All_Default4-900x760.jpg', alt: 'Beautiful curtains' },
+  { src: '/images/hero-bg.jpg', alt: 'Living room with curtains' },
+  { src: '/images/outdoor-zip.jpg', alt: 'Outdoor blinds' },
+  { src: '/images/curtains-motorised.jpg', alt: 'Motorised curtains' },
+  { src: '/images/measure.jpg', alt: 'Consultation' },
+  { src: '/images/curtains-all.jpg', alt: 'Beautiful curtains' },
 ]
 
 export default function Inspiration() {

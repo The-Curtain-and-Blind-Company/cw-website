@@ -11,17 +11,17 @@ export const metadata: Metadata = {
 }
 
 const BLIND_IMAGES: Record<string, string> = {
-  'default': 'https://curtainworld.com.au/wp-content/uploads/2021/01/blinds_tab_900x760-900x760.jpg',
-  'blockout-roller': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_RollerBlockout_All_Default2-900x760.jpg',
-  'sunscreen-roller': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_RollerSunscreen_All_Default-900x760.jpg',
-  'timber-venetian': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_VenetianTimber_All_Default-900x760.jpg',
-  'aluminium-venetian': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_VenetianAluminium_All_Default-900x760.jpg',
-  'cellular-blinds': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_Cellular_All_Default2-900x760.jpg',
-  'roman-blinds': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_Roman_All_Default-900x760.jpg',
-  'vertical': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_Vertical_All_Default2-900x760.jpg',
-  'veri-shade-blinds': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_VeriShade_All_Default-900x760.jpg',
-  'office-blinds': 'https://curtainworld.com.au/wp-content/uploads/2021/01/blinds_tab_900x760-900x760.jpg',
-  'office-venetian-blinds': 'https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Blinds_VenetianAluminium_All_Default-900x760.jpg',
+  'default': '/images/blinds-all.jpg',
+  'blockout-roller': '/images/blinds-roller-blockout.jpg',
+  'sunscreen-roller': '/images/blinds-roller-sunscreen.jpg',
+  'timber-venetian': '/images/blinds-venetian-timber.jpg',
+  'aluminium-venetian': '/images/blinds-venetian-alu.jpg',
+  'cellular-blinds': '/images/blinds-cellular.jpg',
+  'roman-blinds': '/images/blinds-roman.jpg',
+  'vertical': '/images/blinds-vertical.jpg',
+  'veri-shade-blinds': '/images/blinds-verishade.jpg',
+  'office-blinds': '/images/blinds-all.jpg',
+  'office-venetian-blinds': '/images/blinds-venetian-alu.jpg',
 }
 
 export default async function BlindsPage() {
@@ -42,7 +42,7 @@ export default async function BlindsPage() {
       <CategoryPageClient
         title="Blinds Perth"
         subtitle="Precision-engineered blinds for every room. Roller, venetian, honeycomb, roman & vertical — all custom-made in our Malaga factory."
-        heroImage="https://curtainworld.com.au/wp-content/uploads/2021/01/blinds_tab_900x760-900x760.jpg"
+        heroImage="/images/blinds-all.jpg"
         products={enriched}
         categoryDescription="From the clean lines of roller blinds to the warmth of timber venetians, CurtainWorld offers Perth's widest range of custom-made blinds. Every blind is built to your exact measurements in our own factory — ensuring a perfect fit and lasting quality."
       />

@@ -66,7 +66,7 @@ export default function Showroom({ settings, hours }: ShowroomProps) {
           </div>
           <div className={styles.image}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://curtainworld.com.au/wp-content/uploads/2023/06/CW_Curtains_motorised_1480x1200.jpg" alt="CurtainWorld Showroom" loading="lazy" />
+            <img src="/images/curtains-motorised.jpg" alt="CurtainWorld Showroom" loading="lazy" />
           </div>
         </div>
       </div>
