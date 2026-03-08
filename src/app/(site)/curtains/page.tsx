@@ -29,7 +29,7 @@ export default async function CurtainsPage() {
               {products?.map((product: { _id: string; title: string; slug: { current: string }; shortDescription?: string }) => (
                 <Link
                   key={product._id}
-                  href={`/curtains/${product.slug.current}`}
+                  href={`/curtains/${product.slug.current.replace('curtains/', '')}`}
                   style={{
                     display: 'block',
                     padding: '32px',
