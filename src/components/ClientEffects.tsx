@@ -42,11 +42,23 @@ export default function ClientEffects() {
       }
       animateCursor()
 
-      // Hover states
-      const interactives = document.querySelectorAll('a, button, [data-magnetic]')
-      interactives.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'))
-        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'))
+      // Hover states — use event delegation so new elements are always handled
+      document.addEventListener('mouseover', (e: MouseEvent) => {
+        const target = (e.target as HTMLElement)?.closest('a, button, [data-magnetic], input, select, textarea')
+        if (target) {
+          cursor.classList.add('cursor--hover')
+        }
+      })
+      document.addEventListener('mouseout', (e: MouseEvent) => {
+        const target = (e.target as HTMLElement)?.closest('a, button, [data-magnetic], input, select, textarea')
+        if (target) {
+          cursor.classList.remove('cursor--hover')
+        }
+      })
+
+      // Ensure cursor stays visible — reset on mousedown/mouseup
+      document.addEventListener('mousedown', () => {
+        cursor.style.opacity = '1'
       })
     }
 
