@@ -31,12 +31,27 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: white;
-  transition: color 0.4s;
+  color: var(--color-cw-charcoal);
   flex-shrink: 0;
+  position: relative;
 }
-.logo svg { height: 18px; width: auto; }
-.scrolled .logo { color: var(--color-cw-charcoal); }
+.logoLight {
+  display: block;
+  height: 18px;
+  width: auto;
+  transition: opacity 0.4s;
+}
+.logoDark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.logoDark svg { height: 18px; width: auto; }
+.scrolled .logoLight { opacity: 0; }
+.scrolled .logoDark { opacity: 1; }
 
 /* ── Nav Links ─────────────────────────────────────── */
 .links {

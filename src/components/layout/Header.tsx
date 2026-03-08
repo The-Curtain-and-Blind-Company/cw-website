@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import CWLogo from '../CWLogo'
 import ArrowIcon from '../ArrowIcon'
 import { useConsultation } from '../ConsultationContext'
@@ -31,8 +32,19 @@ export default function Header() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
-          <CWLogo />
-          <span className="sr-only">CurtainWorld</span>
+          {/* Light logo (white) for transparent header on hero */}
+          <Image
+            src="/logo-light.webp"
+            alt="CurtainWorld"
+            width={220}
+            height={18}
+            className={styles.logoLight}
+            priority
+          />
+          {/* Dark logo (SVG) for scrolled white header */}
+          <span className={styles.logoDark}>
+            <CWLogo />
+          </span>
         </Link>
 
         <ul className={styles.links}>
