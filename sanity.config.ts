@@ -58,6 +58,7 @@ export default defineConfig({
   title: 'CurtainWorld',
   projectId,
   dataset,
+  basePath: '/studio',
   plugins: [
     structureTool({ structure: deskStructure }),
     visionTool(),
